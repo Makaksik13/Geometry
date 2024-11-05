@@ -1,6 +1,5 @@
 package com.sukhanov.geometry.repository;
 
-import com.querydsl.core.Query;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberExpression;
@@ -13,8 +12,6 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Page;
-
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.data.querydsl.QSort;
@@ -24,8 +21,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import static com.querydsl.core.types.ExpressionUtils.and;
 
 @Repository
 public interface ShowplaceRepository extends JpaRepository<Showplace, UUID>, QuerydslPredicateExecutor<Showplace>{
