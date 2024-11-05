@@ -1,0 +1,42 @@
+version: '3.8'
+name: "geo-spring"
+services:
+  postgres:
+    image: postgis/postgis:15-3.4-alpine
+    container_name: postgres_geo_spring
+    restart: unless-stopped
+    environment:
+      PGUSER: PGCL_HABR
+      POSTGRES_USER: PGCL_HABR
+      POSTGRES_PASSWORD: PGCL_VERYSECURE
+      POSTGRES_DB: GEO_DB
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    command: >
+      postgres
+      -c shared_buffers=256MB
+      -c effective_cache_size=512MB
+      -c maintenance_work_mem=128MB
+      -c checkpoint_completion_target=0.7
+      -c wal_buffers=8MB
+      -c random_page_cost=2
+      -c effective_io_concurrency=1
+      -c work_mem=8192kB
+    networks:
+      - local
+
+volumes:
+  cache:
+  pgdata:
+    driver: local
+
+networks:
+  local:
+    driver: bridge
