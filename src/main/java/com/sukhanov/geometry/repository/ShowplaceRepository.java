@@ -12,6 +12,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.data.querydsl.QSort;
@@ -24,6 +25,8 @@ import java.util.UUID;
 
 @Repository
 public interface ShowplaceRepository extends JpaRepository<Showplace, UUID>, QuerydslPredicateExecutor<Showplace>{
+
+    Page<Showplace> findAllByCity(String nameCity, Pageable pageable);
 
     default Page<Showplace> findAllByRadius(
             List<Category> categories,

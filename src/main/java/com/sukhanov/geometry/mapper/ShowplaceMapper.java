@@ -18,10 +18,10 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface ShowplaceMapper {
 
-    @Mapping(target = "geometry", qualifiedByName = "makeLocation", source = "location")
+    @Mapping(target = "location", qualifiedByName = "makeLocation", source = "location")
     ShowplaceDto toDto(Showplace showplace);
 
-    @Mapping(target = "location", qualifiedByName = "makePoint", source = "geometry")
+    @Mapping(target = "location", qualifiedByName = "makePoint", source = "location")
     Showplace toEntity(ShowplaceDto showplaceDto);
 
     @Named("makePoint")
