@@ -30,4 +30,7 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "showplace_id", nullable = false)
+    private UUID showplaceId;
 }

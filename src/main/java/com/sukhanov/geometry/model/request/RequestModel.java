@@ -2,9 +2,8 @@ package com.sukhanov.geometry.model.request;
 
 import com.sukhanov.geometry.model.dto.LocationPoint;
 import com.sukhanov.geometry.model.entity.Category;
-import com.sukhanov.geometry.model.sorting.SortedField;
+import com.sukhanov.geometry.model.entity.Field;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -22,14 +21,12 @@ import java.util.List;
 public class RequestModel {
 
     @Schema(description = "местоположение")
-    @Valid
     private LocationPoint location;
 
     @Schema(
             description = "Номер страницы",
             implementation = Integer.class,
-            example = "0"
-    )
+            example = "0")
     @NotNull
     @Min(0)
     private Integer offset;
@@ -39,16 +36,16 @@ public class RequestModel {
             implementation = Integer.class,
             example = "10",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    @Min(0)
+    @Min(1)
     @NotNull
     private Integer limit;
 
     @Schema(
             description = "Поля сортировки",
-            implementation = SortedField[].class,
+            implementation = Field[].class,
             example = "[\"DISTANCE\"]")
     @NotEmpty
-    private SortedField[] orderBy;
+    private Field[] orderBy;
 
     @Schema(
             description = "Порядки сортировки",
@@ -60,26 +57,25 @@ public class RequestModel {
     @Schema(
             description = "Радиус поиска",
             implementation = Double.class,
-            example = "100.0",
-            minimum = "0.0"
-    )
-    @NotNull
+            example = "100.0")
     @PositiveOrZero
     private Double radius;
 
     @Schema(
             description = "Категории для поиска",
-            implementation = Category[].class
-    )
+            implementation = Category[].class)
     private List<Category> categories;
 
     @Schema(
             description = "Минимальный рейтинг",
             implementation = Double.class,
-            example = "2.0",
-            requiredMode = Schema.RequiredMode.REQUIRED
-    )
-    @NotNull
+            example = "2.0")
     @PositiveOrZero
     private Double rating;
+
+    @Schema(
+            description = "Имя города",
+            example = "Samara"
+    )
+    private String city;
 }

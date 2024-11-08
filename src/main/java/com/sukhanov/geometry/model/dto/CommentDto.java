@@ -1,10 +1,7 @@
 package com.sukhanov.geometry.model.dto;
 
-import com.sukhanov.geometry.validation.Marker;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -21,8 +18,6 @@ import java.util.UUID;
 public class CommentDto {
 
     @Schema(description = "Идентификатор")
-    @Null(groups = Marker.OnCreate.class, message = "The id '${validatedValue}' must be null")
-    @NotNull(groups = Marker.OnUpdate.class, message = "The id must be not null")
     private UUID id;
 
     @Schema(description = "Содержание")
