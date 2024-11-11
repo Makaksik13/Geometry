@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -39,9 +38,6 @@ public class ShowplaceDto {
     @Schema(description = "Категория")
     @NotNull(message = "The category must be not null")
     private Category category;
-
-    @Valid
-    private List<CommentDto> comments;
 
     @Valid
     private RatingDto rating;

@@ -8,10 +8,12 @@ import java.util.UUID;
 
 public interface ShowplaceService {
 
-    Page<ShowplaceDto> findAllByCriteria(RequestModel requestModel);
+    Page<ShowplaceDto> getAllByCriteria(RequestModel requestModel);
 
     Double giveRating(UUID uuid, Integer mark);
 
     ShowplaceDto getShowplaceById(UUID uuid);
+
+    ShowplaceDto createShowplace(ShowplaceDto showplaceDto);
 }
 

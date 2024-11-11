@@ -34,6 +34,8 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Page<CommentDto> getCommentsByShowplaceId(Integer offset, Integer limit, UUID showplaceId){
+        showplaceValidator.validateShowplaceExistence(showplaceId);
+
         return commentRepository.findAllByShowplaceId(showplaceId, PageRequest.of(offset, limit))
                 .map(commentMapper::toDto);
     }

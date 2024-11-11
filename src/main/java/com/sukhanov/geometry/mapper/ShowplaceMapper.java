@@ -6,6 +6,7 @@ import com.sukhanov.geometry.model.entity.Showplace;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -14,7 +15,8 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(
         componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        uses = {CommentMapper.class, RatingMapper.class}
+        injectionStrategy = InjectionStrategy.CONSTRUCTOR,
+        uses = RatingMapper.class
 )
 public interface ShowplaceMapper {
 

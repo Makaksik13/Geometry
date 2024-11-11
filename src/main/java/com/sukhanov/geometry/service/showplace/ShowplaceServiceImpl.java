@@ -29,7 +29,7 @@ public class ShowplaceServiceImpl implements ShowplaceService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ShowplaceDto> findAllByCriteria(RequestModel requestModel) {
+    public Page<ShowplaceDto> getAllByCriteria(RequestModel requestModel) {
         QSort qSort = makeSort(requestModel);
         QPageRequest pageRequest = QPageRequest.of(requestModel.getOffset(), requestModel.getLimit(), qSort);
 
@@ -56,6 +56,12 @@ public class ShowplaceServiceImpl implements ShowplaceService {
     @Transactional(readOnly = true)
     public ShowplaceDto getShowplaceById(UUID uuid){
         return showplaceMapper.toDto(getById(uuid));
+    }
+
+    @Override
+    public ShowplaceDto createShowplace(ShowplaceDto showplaceDto) {
+        Showplace savedShowplace = showplaceRepository.save(showplaceMapper.toEntity(showplaceDto));
+        return showplaceMapper.toDto(savedShowplace);
     }
 
     private QSort makeSort(RequestModel requestModel){

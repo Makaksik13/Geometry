@@ -2,6 +2,7 @@ package com.sukhanov.geometry.mapper;
 
 import com.sukhanov.geometry.model.dto.RatingDto;
 import com.sukhanov.geometry.model.entity.Rating;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -9,7 +10,8 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(
         componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public interface RatingMapper {
 
